@@ -5,19 +5,40 @@ function App() {
 
   let [weather, setweather] = useState([]);
   let [inpValue, setinpValue] = useState("");
+  let [Temp, setTemp] = useState("");
+  let [Speed, setspeed] = useState("");
+  let [deg, setdeg] = useState("");
+  let [Humidity, setHumidity] = useState("");
+  let [cityName, setCityName] = useState("");
 
 
   useEffect(function () {
-    getDataFromApi()
+    getDataFromApi('karachi')
   }, [])
 
-  const getDataFromApi = () => {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=karachi&appid=23452a215e99c24e452175b6ff4e8081&units=metric`)
+  const getDataFromApi = (cityName) => {
+
+    fetch(`https://api.openweathermap.org/data/2.5/weather?units=metric&q=${cityName}&appid=23452a215e99c24e452175b6ff4e8081`)
       .then((res) => res.json())
-      .then((data) => setweather(data.main))
+      .then((data) => {
+        console.log(data.main)
+        setTemp(Math.round(data.main.temp))
+        setHumidity(data.main.humidity)
+        setCityName(data.name)
+        setweather(data.weather[0].main)
+        setspeed(data.wind.speed)
+        setdeg(data.wind.deg)
+      })
   }
+  if (!cityName) {
+    return <h1>loading...</h1>
+  }
+  console.log(Temp);
+  console.log(Humidity);
+  console.log(cityName);
   console.log(weather);
-  console.log(weather.temp);
+  console.log(Speed);
+  console.log(deg);
 
   const SearchWeather = () => {
     console.log(inpValue);
@@ -30,8 +51,12 @@ function App() {
       <div className="main">
         <input type="text" onChange={(e) => setinpValue(e.target.value)} name="" id="" />
         <button onClick={SearchWeather}>Search</button>
-        <h2>Temperature {weather.temp}</h2>
-        <h2>Humidity {weather.humidity}</h2>
+        <h1>{cityName}</h1>
+        <h2>Temperature : {Temp} °C</h2>
+        <h2>Humidity : {Humidity}</h2>
+        <h2>Weather : {weather}</h2>
+        <h2>Speed : {Speed}</h2>
+        <h2>Deg : {deg}</h2>
       </div>
     </div>
   );
