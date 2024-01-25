@@ -32,7 +32,66 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+
+
+body {
+  background-color: #454e5ba9;
+}
+
+.main {
+  background-color: #0b131e;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  width: 35%;
+  margin: auto;
+  margin-top: 10vh;
+  padding: 20px;
+  padding-bottom: 40px;
+  padding-top: 40px;
+  border-radius: 10px;
+}
+
+.childDiv {
+  display: flex;
+  padding-bottom: 20px;
+}
+
+.inp {
+  background-color: #6b798ba9;
+  color: white;
+  width: 100%;
+  height: 40px;
+  border-radius: 360px;
+  border: 2px solid whitesmoke;
+  padding-left: 12px;
+
+}
+
+#searchbtn {
+  background-color: #6b798ba9;
+  color: whitesmoke;
+  padding: 5px;
+  border-radius: 5px;
+  width: 25%;
+  margin-left: 10px;
+  border: none;
+}
+
+#searchbtn:hover {
+  border: 2px solid whitesmoke;
+}
+
+#searchbtn:focus {
+  box-shadow: 2px 2px 2px white;
+}
+
+.inp::placeholder {
+  color: white;
 }

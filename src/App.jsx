@@ -3,7 +3,7 @@ import './App.css';
 
 function App() {
 
-  let [weather, setweather] = useState([]);
+  let [weather, setweather] = useState("");
   let [inpValue, setinpValue] = useState("");
   let [Temp, setTemp] = useState("");
   let [Speed, setspeed] = useState("");
@@ -17,18 +17,22 @@ function App() {
   }, [])
 
   const getDataFromApi = (cityName) => {
-
-    fetch(`https://api.openweathermap.org/data/2.5/weather?units=metric&q=${cityName}&appid=23452a215e99c24e452175b6ff4e8081`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data.main)
-        setTemp(Math.round(data.main.temp))
-        setHumidity(data.main.humidity)
-        setCityName(data.name)
-        setweather(data.weather[0].main)
-        setspeed(data.wind.speed)
-        setdeg(data.wind.deg)
-      })
+    if (cityName) {
+      fetch(`https://api.openweathermap.org/data/2.5/weather?units=metric&q=${cityName}&appid=23452a215e99c24e452175b6ff4e8081`)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data.main)
+          setTemp(Math.round(data.main.temp))
+          setHumidity(data.main.humidity)
+          setCityName(data.name)
+          setweather(data.weather[0].main)
+          setspeed(data.wind.speed)
+          setdeg(data.wind.deg)
+        })
+    }
+    else {
+      alert("Please Enter City Name!")
+    }
   }
   if (!cityName) {
     return <h1>loading...</h1>
@@ -49,8 +53,10 @@ function App() {
     <div className="App">
 
       <div className="main">
-        <input type="text" onChange={(e) => setinpValue(e.target.value)} name="" id="" />
-        <button onClick={SearchWeather}>Search</button>
+        <div className='childDiv'>
+          <input placeholder='Enter City Name' type="text" className="inp" onChange={(e) => setinpValue(e.target.value)} name="" id="" />
+          <button onClick={SearchWeather} id='searchbtn'>Search</button>
+        </div>
         <h1>{cityName}</h1>
         <h2>Temperature : {Temp} °C</h2>
         <h2>Humidity : {Humidity}</h2>
