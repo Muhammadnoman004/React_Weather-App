@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
 import './App.css';
 
 function App() {
@@ -29,9 +30,22 @@ function App() {
           setspeed(data.wind.speed)
           setdeg(data.wind.deg)
         })
+        .catch((error) => {
+          console.log("city not Found")
+          Swal.fire({
+            imageUrl: "https://png.pngtree.com/png-vector/20220616/ourmid/pngtree-sad-apologizing-emoticon-holding-a-sign-with-the-text-sorry-png-image_5103588.png",
+            imageWidth: 120,
+            imageHeight: 110,
+            text: "City not found!",
+          });
+        })
     }
     else {
-      alert("Please Enter City Name!")
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please Enter City Name!",
+      });
     }
   }
   if (!cityName) {
@@ -45,8 +59,8 @@ function App() {
   console.log(deg);
 
   const SearchWeather = () => {
-    console.log(inpValue);
     getDataFromApi(inpValue)
+    setinpValue("")
   }
 
   return (
@@ -54,7 +68,7 @@ function App() {
 
       <div className="main">
         <div className='childDiv'>
-          <input placeholder='Enter City Name' type="text" className="inp" onChange={(e) => setinpValue(e.target.value)} name="" id="" />
+          <input placeholder='Enter City Name' type="text" className="inp" value={inpValue} onChange={(e) => setinpValue(e.target.value)} name="" id="" />
           <button onClick={SearchWeather} id='searchbtn'>Search</button>
         </div>
         <h1>{cityName}</h1>
