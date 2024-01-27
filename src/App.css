@@ -38,7 +38,7 @@
   }
 }
 
-
+/* Media Querry */
 
 body {
   background-color: #454e5ba9;
@@ -46,8 +46,6 @@ body {
 
 .main {
   background-color: #0b131e;
-  background-repeat: no-repeat;
-  background-size: cover;
   color: white;
   width: 35%;
   margin: auto;
@@ -82,6 +80,8 @@ body {
   width: 25%;
   margin-left: 10px;
   border: none;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 20px;
 }
 
 #searchbtn:hover {
@@ -94,4 +94,49 @@ body {
 
 .inp::placeholder {
   color: white;
+}
+
+
+@media screen and (max-width : 840px) {
+  .main {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width : 570px) {
+  .main {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width : 450px) {
+  .main {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width : 340px) {
+  .main {
+    width: 93%;
+  }
+
+  #searchbtn {
+    padding: 5px;
+    font-size: 15px;
+  }
+
+}
+
+@media screen and (max-width : 250px) {
+  .childDiv {
+    display: inline-block;
+  }
+
+  #searchbtn {
+    position: relative;
+    left: 25%;
+    top: 10px;
+    width: 70px;
+    margin-bottom: 10px;
+  }
 }
