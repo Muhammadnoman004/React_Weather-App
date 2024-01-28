@@ -49,7 +49,7 @@ body {
   color: white;
   width: 35%;
   margin: auto;
-  margin-top: 10vh;
+  margin-top: 7vh;
   padding: 20px;
   padding-bottom: 40px;
   padding-top: 40px;
@@ -58,7 +58,7 @@ body {
 
 .childDiv {
   display: flex;
-  padding-bottom: 20px;
+  padding-bottom: 30px;
 }
 
 .inp {
@@ -96,6 +96,69 @@ body {
   color: white;
 }
 
+#cityname {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: bold;
+}
+
+#weather {
+  font-size: large;
+  font-family: monospace;
+  letter-spacing: 1px;
+}
+
+#weatherImg {
+  width: 200px;
+  height: 200px;
+}
+
+#temp {
+  padding-top: 10px;
+  font-size: 55px;
+}
+
+.windDiv {
+  display: flex;
+  justify-content: space-between;
+}
+
+.windDiv h2 {
+  background-color: #202b3b;
+  color: #a4aab4;
+  padding: 6px;
+  padding-right: 50px;
+  font-size: 14px;
+  font-family: monospace;
+  font-weight: bold;
+  width: 130px;
+  height: 60px;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+
+#humidity {
+  font-size: x-large;
+  color: white;
+  padding-left: 40px;
+  position: relative;
+  top: 7px;
+}
+
+#windHead {
+  padding-right: 80px;
+}
+
+#Wind {
+  font-size: x-large;
+  color: white;
+  padding-left: 13px;
+  position: relative;
+  top: 7px;
+}
+
+#km {
+  padding-left: 7px;
+}
 
 @media screen and (max-width : 840px) {
   .main {
@@ -125,6 +188,25 @@ body {
     font-size: 15px;
   }
 
+  .windDiv {
+    display: inline-block;
+  }
+
+  .windDiv h2 {
+    width: 100%;
+    padding-right: 110px;
+  }
+
+  #humidity {
+    position: relative;
+    left: 30px;
+  }
+
+  #Wind {
+    position: relative;
+    left: 30px;
+  }
+
 }
 
 @media screen and (max-width : 250px) {
@@ -138,5 +220,9 @@ body {
     top: 10px;
     width: 70px;
     margin-bottom: 10px;
+  }
+
+  .windDiv h2 {
+    width: 90%;
   }
 }

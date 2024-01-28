@@ -1,6 +1,13 @@
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import './App.css';
+import clear from "./assets/clear.png"
+import clouds from "./assets/clouds.png"
+import drizzle from "./assets/drizzle.png"
+import haze from "./assets/haze.png"
+import mist from "./assets/mist.png"
+import rain from "./assets/rain.png"
+import snow from "./assets/snow.png"
 
 function App() {
 
@@ -8,9 +15,9 @@ function App() {
   let [inpValue, setinpValue] = useState("");
   let [Temp, setTemp] = useState("");
   let [Speed, setspeed] = useState("");
-  let [deg, setdeg] = useState("");
   let [Humidity, setHumidity] = useState("");
   let [cityName, setCityName] = useState("");
+  let [weatherpng, setweatherpng] = useState(null);
 
 
   useEffect(function () {
@@ -22,16 +29,39 @@ function App() {
       fetch(`https://api.openweathermap.org/data/2.5/weather?units=metric&q=${cityName}&appid=23452a215e99c24e452175b6ff4e8081`)
         .then((res) => res.json())
         .then((data) => {
-          console.log(data.main)
           setTemp(Math.round(data.main.temp))
           setHumidity(data.main.humidity)
           setCityName(data.name)
           setweather(data.weather[0].main)
           setspeed(data.wind.speed)
-          setdeg(data.wind.deg)
+
+          if (data.weather[0].main === "Haze") {
+            setweatherpng(haze)
+          }
+          else if (data.weather[0].main === "Clear") {
+            setweatherpng(clear)
+          }
+          else if (data.weather[0].main === "Clouds") {
+            setweatherpng(clouds)
+          }
+          else if (data.weather[0].main === "Drizzle") {
+            setweatherpng(drizzle)
+          }
+          else if (data.weather[0].main === "Mist") {
+            setweatherpng(mist)
+          }
+          else if (data.weather[0].main === "Smoke") {
+            setweatherpng(haze)
+          }
+          else if (data.weather[0].main === "Rain") {
+            setweatherpng(rain)
+          }
+          else if (data.weather[0].main === "Snow") {
+            setweatherpng(snow)
+          }
+
         })
         .catch((error) => {
-          console.log("city not Found")
           Swal.fire({
             imageUrl: "https://png.pngtree.com/png-vector/20220616/ourmid/pngtree-sad-apologizing-emoticon-holding-a-sign-with-the-text-sorry-png-image_5103588.png",
             imageWidth: 120,
@@ -51,12 +81,6 @@ function App() {
   if (!cityName) {
     return <h1>loading...</h1>
   }
-  console.log(Temp);
-  console.log(Humidity);
-  console.log(cityName);
-  console.log(weather);
-  console.log(Speed);
-  console.log(deg);
 
   const SearchWeather = () => {
     getDataFromApi(inpValue)
@@ -71,12 +95,18 @@ function App() {
           <input placeholder='Enter City Name' type="text" className="inp" value={inpValue} onChange={(e) => setinpValue(e.target.value)} name="" id="" />
           <button onClick={SearchWeather} id='searchbtn'>Search</button>
         </div>
-        <h1>{cityName}</h1>
-        <h2>Temperature : {Temp} °C</h2>
-        <h2>Humidity : {Humidity}</h2>
-        <h2>Weather : {weather}</h2>
-        <h2>Speed : {Speed}</h2>
-        <h2>Deg : {deg}</h2>
+        <h1 id='cityname'>{cityName}</h1>
+        <h2 id='weather'>{weather}</h2>
+        <img id='weatherImg' src={weatherpng} alt="" />
+        <h2 id='temp'>{Temp}°</h2><br />
+        <div className='windDiv'>
+          <div>
+            <h2>Humidity <br /> <span id='humidity'>{Humidity}</span></h2>
+          </div>
+          <div>
+            <h2 id='windHead'>WIND <br /> <span id='Wind'>{Speed}<span id='km'>km/h</span></span> </h2>
+          </div>
+        </div>
       </div>
     </div>
   );
