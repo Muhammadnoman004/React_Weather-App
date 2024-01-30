@@ -79,7 +79,7 @@ function App() {
     }
   }
   if (!cityName) {
-    return <h1>loading...</h1>
+    return <img src="https://i.gifer.com/ZZ5H.gif" id='loader' alt="" />
   }
 
   const SearchWeather = () => {

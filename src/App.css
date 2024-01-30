@@ -44,6 +44,13 @@ body {
   background-color: #454e5ba9;
 }
 
+#loader {
+  width: 80px;
+  position: absolute;
+  top: 40%;
+  left: 45%;
+}
+
 .main {
   background-color: #0b131e;
   color: white;
@@ -169,6 +176,14 @@ body {
 @media screen and (max-width : 570px) {
   .main {
     width: 70%;
+  }
+}
+
+@media screen and (max-width : 500px) {
+  #loader {
+    position: absolute;
+    top: 35%;
+    left: 40%;
   }
 }
 
